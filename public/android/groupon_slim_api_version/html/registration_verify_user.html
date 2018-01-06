@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Verification</title>
+  <meta name="description" content="Verification Page">
+  <meta name="author" content="Marcus Chiu">
+
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Prior to version 9, IE prevented unrecognized elements from receiving styling. 
+  Fortunately, there’s a solution: a very simple piece of JavaScript originally developed by John Resig. Inspired by an idea by Sjoerd Visscher, it can make the new HTML5 elements styleable in older versions of IE. -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <!-- <script src="js/scripts.js"></script> -->
+  <div id="header">
+      <h3>Verification Page</h3>
+  </div>
+  
+  <div id="wrap">
+      
+      <?php
+          require_once '../include/DbHandler.php';
+          require_once '../include/Config.php';
+          
+          if(isset($_GET['id']) && isset($_GET['verification_code'])){
+              $id = $_GET['id'];
+              $verification_code = $_GET['verification_code'];
+          
+              $db = new DbHandler();
+              $res = $db->verifyUser($id, $verification_code);
+  
+	      if($res == USER_IS_NOW_VERIFIED) {
+	          echo '<div class="statusmsg">Your account has been activated, you can now login</div>';
+	      } else if($res == USER_VERIFY_FAILED) {
+	          echo '<div class="statusmsg">server has problems updating user row</div>';
+	      } else if($res == VERIFICATION_CODE_DOES_NOT_EXIST) {
+	          echo '<div class="statusmsg">invalid verification code and id</div>';
+	      } else if($res == USER_ALREADY_ACTIVATED) {
+	          echo '<div class="statusmsg">Account has already been activated</div>';
+	      }
+
+          }else{
+              //invalid approach
+              echo '<div class="statusmsg">Invalid url, missing fields</div>';
+          }
+      ?>    
+  
+  </div>
+</body>
+</html>

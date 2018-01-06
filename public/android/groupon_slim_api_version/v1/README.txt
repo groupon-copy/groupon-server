@@ -1,0 +1,1 @@
+THERE is a hidden file .htaccess

@@ -1,0 +1,6 @@
+#worked as of 2016 August 6 
+#this is for GoDaddy 
+#to parse HTML as PHP using .htaccess file
+
+AddHandler fcgid-script .html
+FCGIWrapper /usr/local/cpanel/cgi-sys/php5 .html

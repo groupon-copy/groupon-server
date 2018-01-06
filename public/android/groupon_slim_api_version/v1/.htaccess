@@ -1,0 +1,5 @@
+#Normally Slim framework works when index.php includes in the url which makes url not well-formed. So using the .htacess rules we can get rid of index.php from the url and make some friendly urls. Inside v1 folder create a file named .htaccess and paste the following code. (Note that this file name shouldn’t include any additional extension in the name like .txt)
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ %{ENV:BASE}index.php [QSA,L]
