@@ -1,10 +1,12 @@
 ## groupon_database.sql
 - import into an empty mysql database
+- <code>mysql -u root -p</code>
+  - <code>mysql> create database groupon_database;</code>
 - <code>mysql -u root -p groupon_database < groupon_database.sql</code>
 
 ## public.zip
 - extract folder and put into server connected internet
-- make neccessary changes in the Config.php in /include folder
+- make necessary changes in the Config.php in /include folder
 - the firebase key and database configurations
 - if you are using own server (not leasing one) then use PHPMailer where neccessary
 
@@ -17,7 +19,7 @@
 - only has the Groupon functionality. no yelp stuff/part two of the app
 
 
-# INFRASTRUTURE SETUP
+# INFRASTRUCTURE SETUP
 
 ### Error message “Forbidden You don't have permission to access / on this server”
 - go to this link
